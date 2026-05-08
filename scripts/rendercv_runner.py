@@ -89,8 +89,6 @@ def main() -> int:
     ensure_rendercv_package(package_root)
     ensure_fontawesome_package(package_root)
 
-    pdf_png.get_package_path.cache_clear()
-
     def package_path_override() -> pathlib.Path:
         return package_root
 

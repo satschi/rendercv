@@ -45,7 +45,6 @@ jobs:
 
           git switch --orphan output
           git clean -fdx
-          rm -rf .github
           cp /tmp/CV.pdf CV.pdf
           git add CV.pdf
           git commit -m "Update rendered CV"
