@@ -43,11 +43,14 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-          git fetch origin output:output || true
-          if git show-ref --verify --quiet refs/heads/output; then
+          if git fetch origin output:output; then
             git switch output
             git rm -rf . || true
           else
+            if git ls-remote --exit-code --heads origin output > /dev/null; then
+              echo "Failed to fetch output branch." >&2
+              exit 1
+            fi
             git switch --orphan output
             git rm -rf . || true
           fi
