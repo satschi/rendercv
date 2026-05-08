@@ -34,6 +34,7 @@ def read_typst_package_version(typst_toml_path: pathlib.Path) -> str:
 
 
 def ensure_rendercv_package(package_root: pathlib.Path) -> None:
+    """Copy the bundled RenderCV Typst package into the local package cache."""
     source = pathlib.Path(rendercv.__file__).parent / "renderer" / "rendercv_typst"
     version = read_typst_package_version(source / "typst.toml")
     destination = package_root / "preview" / "rendercv" / version
@@ -44,6 +45,7 @@ def ensure_rendercv_package(package_root: pathlib.Path) -> None:
 
 
 def ensure_fontawesome_package(package_root: pathlib.Path) -> None:
+    """Download Font Awesome Typst package files into the local cache if missing."""
     destination = package_root / "preview" / "fontawesome" / FONT_AWESOME_VERSION
     if (destination / "typst.toml").exists():
         return
