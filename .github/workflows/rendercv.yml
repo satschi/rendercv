@@ -9,6 +9,7 @@ on:
       - CV.yaml
       - requirements.txt
       - scripts/rendercv.sh
+      - scripts/rendercv_runner.py
 
 permissions:
   contents: write
