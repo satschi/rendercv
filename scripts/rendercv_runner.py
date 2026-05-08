@@ -93,7 +93,6 @@ def main() -> int:
         return package_root
 
     pdf_png.get_package_path = functools.lru_cache(maxsize=1)(package_path_override)
-    pdf_png.get_typst_compiler.cache_clear()
 
     main_yaml = input_path.read_text(encoding="utf-8")
     _, rendercv_model = build_rendercv_dictionary_and_model(

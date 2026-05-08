@@ -9,7 +9,6 @@ on:
       - CV.yaml
       - requirements.txt
       - scripts/rendercv.sh
-      - .github/workflows/rendercv.yml
 
 permissions:
   contents: write
@@ -43,9 +42,20 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-          git switch --orphan output
+          git fetch origin output:output || true
+          if git show-ref --verify --quiet refs/heads/output; then
+            git switch output
+            git rm -rf . || true
+          else
+            git switch --orphan output
+            git rm -rf . || true
+          fi
           git clean -fdx
           cp /tmp/CV.pdf CV.pdf
           git add CV.pdf
+          if git diff --staged --quiet; then
+            echo "No changes to publish."
+            exit 0
+          fi
           git commit -m "Update rendered CV"
-          git push --force origin output
+          git push origin output
