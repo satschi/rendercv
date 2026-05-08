@@ -1,0 +1,3 @@
+.venv/
+.typst-packages/
+rendercv_output/

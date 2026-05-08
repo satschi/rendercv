@@ -1,10 +1,10 @@
-# yaml-language-server: $schema=https://raw.githubusercontent.com/rendercv/rendercv/6e0629c1ab82a80bacff0d1454d1afc1d3c45e56/schema.json
+# yaml-language-server: $schema=https://raw.githubusercontent.com/rendercv/rendercv/1d4b87bc427e4cf61c0ef49623c971b0e2224708/schema.json
 cv:
   name: Some Person
   location: Austria
   email: some.person@domain.tld
   phone: +43-676-123456
-  photo: photo.png
+  photo: null
   sections:
     Bildung:
       - institution: TU Wien
@@ -37,29 +37,32 @@ cv:
       - label: Italienisch
         details: A1
 design:
+  theme: classic
   header:
     photo_width: 3.5cm
-  theme: classic
+    connections:
+      phone_number_format: international
   page:
     size: a4
-    show_page_numbering: true
-    show_last_updated_date: false
+    show_footer: true
+    show_top_note: false
   colors:
-    text: rgb(0, 0, 0)
+    body: rgb(0, 0, 0)
     name: rgb(143,188,143)
     connections: rgb(0, 0, 0)
     section_titles: rgb(0, 0, 0)
     links: rgb(0, 79, 144)
-    last_updated_date_and_page_numbering: rgb(128, 128, 128)
+    footer: rgb(128, 128, 128)
+    top_note: rgb(128, 128, 128)
+  templates:
+    footer: PAGE_NUMBER/TOTAL_PAGES
+    single_date: MONTH_ABBREVIATION YEAR
+    date_range: START_DATE – END_DATE
 
 locale:
-  language: de
-  phone_number_format: international
-  page_numbering_template: PAGE_NUMBER/TOTAL_PAGES
-  date_template: MONTH_ABBREVIATION YEAR
-  to: –
+  language: german
   present: laufend
-  abbreviations_for_months:
+  month_abbreviations:
     - Jän.
     - Feb.
     - Mär.
@@ -73,6 +76,5 @@ locale:
     - Nov.
     - Dez.
 
-rendercv_settings:
-  render_command:
+settings:
   bold_keywords: []

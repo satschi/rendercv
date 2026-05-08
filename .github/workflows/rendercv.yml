@@ -1,0 +1,52 @@
+name: Render CV
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - CV.yaml
+      - requirements.txt
+      - scripts/rendercv.sh
+      - .github/workflows/rendercv.yml
+
+permissions:
+  contents: write
+
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Set up uv
+        uses: astral-sh/setup-uv@v3
+      - name: Render PDF
+        run: scripts/rendercv.sh
+      - name: Publish PDF
+        run: |
+          set -euo pipefail
+          PDF_PATH="$(ls rendercv_output/*.pdf | head -n 1)"
+          if [ -z "$PDF_PATH" ]; then
+            echo "No PDF output found." >&2
+            exit 1
+          fi
+          cp "$PDF_PATH" /tmp/CV.pdf
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git switch --orphan output
+          git clean -fdx
+          rm -rf .github
+          cp /tmp/CV.pdf CV.pdf
+          git add CV.pdf
+          git commit -m "Update rendered CV"
+          git push --force origin output
