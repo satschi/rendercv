@@ -1,0 +1,78 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/rendercv/rendercv/6e0629c1ab82a80bacff0d1454d1afc1d3c45e56/schema.json
+cv:
+  name: Some Person
+  location: Austria
+  email: some.person@domain.tld
+  phone: +43-676-123456
+  photo: photo.png
+  sections:
+    Bildung:
+      - institution: TU Wien
+        area: Informatik
+        degree: BSc
+        date:
+        start_date: 2017-10
+        end_date: 2024-10
+        location: Linz
+    Berufserfahrung:
+      - company: foobar
+        position: test
+        date:
+        start_date: 2020-08
+        end_date: 2022-01
+        location: Linz
+        summary:
+        highlights:
+          - test
+    skills:
+      - label: Programmiersprachen
+        details: Java, Python
+    sprachen:
+      - label: Deutsch
+        details: Erstsprache
+      - label: Englisch
+        details: C1
+      - label: Französisch
+        details: B1
+      - label: Italienisch
+        details: A1
+design:
+  header:
+    photo_width: 3.5cm
+  theme: classic
+  page:
+    size: a4
+    show_page_numbering: true
+    show_last_updated_date: false
+  colors:
+    text: rgb(0, 0, 0)
+    name: rgb(143,188,143)
+    connections: rgb(0, 0, 0)
+    section_titles: rgb(0, 0, 0)
+    links: rgb(0, 79, 144)
+    last_updated_date_and_page_numbering: rgb(128, 128, 128)
+
+locale:
+  language: de
+  phone_number_format: international
+  page_numbering_template: PAGE_NUMBER/TOTAL_PAGES
+  date_template: MONTH_ABBREVIATION YEAR
+  to: –
+  present: laufend
+  abbreviations_for_months:
+    - Jän.
+    - Feb.
+    - Mär.
+    - Apr.
+    - Mai.
+    - Jun.
+    - Jul.
+    - Aug.
+    - Sept.
+    - Okt.
+    - Nov.
+    - Dez.
+
+rendercv_settings:
+  render_command:
+  bold_keywords: []
